@@ -2,17 +2,8 @@ namespace csharp_exercise
 {
     public class Merger
     {
-        public Node Merge(Node head1, Node head2)
+        public static Node Merge(Node head1, Node head2)
         {
-            if(head1 == null && head2 ==null)
-                return null;
-
-            if(head1 == null || head2 == null)
-            {
-                return head1 == null ? head2 : head1;
-            }
-
-
             Node current = null, previous = null;
             Node merged = null;
 
@@ -41,21 +32,24 @@ namespace csharp_exercise
 
             }
 
-            if (head1 == null && head2 == null)
-                current.next = null;
-            else
+
+            Node leftover = (head1 == null ? head2 : head1);
+            while(leftover != null)
             {
-                Node leftover = (head1 == null ? head2 : head1);
-                while(leftover !=null)
+                current = new Node
                 {
-                    current = new Node();
-                    current.data = leftover.data;
+                    data = leftover.data
+                };
+
+                if (merged == null)
+                    merged = current;
+                else
                     previous.next = current;
-                    previous = current;
-                    leftover = leftover.next;
-                }
-                current.next = null;
+
+                previous = current;
+                leftover = leftover.next;
             }
+
             return merged;
         }
     }
