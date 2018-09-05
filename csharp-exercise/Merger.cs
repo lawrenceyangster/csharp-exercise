@@ -20,10 +20,6 @@ namespace csharp_exercise
             while(head1 != null && head2 != null)
             {
                 current = new Node();
-                if (merged == null)
-                    merged = current;
-                else
-                    previous.next = current;
 
                 if (head1.data <= head2.data)
                 {
@@ -35,6 +31,12 @@ namespace csharp_exercise
                     current.data = head2.data;
                     head2 = head2.next;
                 }
+
+                if(merged == null)
+                    merged = current;
+                else
+                    previous.next = current;
+
                 previous = current;
 
             }
